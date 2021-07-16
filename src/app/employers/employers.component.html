@@ -1,0 +1,274 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto" style="vertical-align: bottom;">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <div class="d-inline-block">
+                            <h4 class="card-title">Informations de l'employer</h4>
+                            <p class="card-category"></p>
+                        </div>
+                        <div class="d-inline-block pull-right" style="margin-right: 3%;">
+                            <button mat-raised-button mat-min-fab (click)="supEmployer()" class="btn btn-danger btn-just-icon btn-round">
+                                <i class="material-icons">close</i>
+                            </button>
+                        </div>
+                        <div class="d-inline-block pull-right" style="margin-right: 3%;">
+                            <button mat-raised-button mat-min-fab data-target="#edit" (click)="remplirForm1()" data-toggle="modal" class="btn btn-success btn-just-icon btn-round">
+                                    <i class="material-icons">edit</i>
+                                </button>
+                        </div>
+                        <div class="d-inline-block pull-right" style="margin-right: 3%;">
+                            <button mat-raised-button mat-min-fab data-target="#premier" data-toggle="modal" class="btn btn-primary btn-just-icon btn-round">
+                                        <i class="material-icons">directions_walk</i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive ">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="text-left"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nom </td>
+                                        <td class="text-center"> {{employer.Nom}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prenom</td>
+                                        <td class="text-center"> {{employer.Prenom}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sexe</td>
+                                        <td class="text-center"> {{employer.Sexe}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Matricul</td>
+                                        <td class="text-center"> {{matricul(employer.emp_id)}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>N° Sécurité soc</td>
+                                        <td class="text-center"> {{employer.Nss}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date de naissance</td>
+                                        <td class="text-center"> {{employer.Date_naiss | date: 'dd/MM/yyyy'}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Statut</td>
+                                        <td class="text-center" style="text-transform: uppercase;"> {{employer.Statut}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ancienneté</td>
+                                        <td class="text-center"> {{employer.Anciennete | date: 'dd/MM/yyyy'}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Adresse</td>
+                                        <td class="text-center"> {{employer.Adresse}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td class="text-center"> {{employer.Email}} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Téléphone</td>
+                                        <td class="text-center"> {{employer.Telephone}} </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 ml-auto mr-auto">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <div class="d-inline-block">
+
+                            <h4 class="card-title">Historique des bulletins de paye</h4>
+                            <p class="card-category"></p>
+                        </div>
+                        <div class="d-inline-block pull-right" style="margin-right: 10%;">
+                            <button mat-raised-button mat-min-fab [routerLink]="['./bulletin',employer.emp_id]" (click)="ajouterB()" class="btn btn-danger btn-just-icon btn-round">
+                                    <i class="material-icons">add</i>
+                                </button>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive ">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="text-left"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let bulletin of employer.Bulletins" [routerLink]="['./bulletin',employer.emp_id]" (click)="voireB(bulletin._id)">
+                                        <td>Bulletin de paye du </td>
+                                        <td class="text-center">{{bulletin.Date_c | date: 'dd/MM/yyyy'}} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal" id="deuxieme">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Veillez sélectionner le poste de destination</h2>
+                        <button type="button" class="close" data-dismiss="modal">
+                                        <span>&times;</span>
+                                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <form [formGroup]="form3" class="example-form">
+                                    <div class="col-12">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="Pos">Service</label>
+                                            </div>
+                                            <select class="custom-select" id="Pos" formControlName="pos" required>
+                                                    <option *ngFor="let poste of postes" [value]="poste.pos_id">
+                                                        {{poste.Libelle_p}}
+                                                    </option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button mat-button color="accent" (click)="confirmer()">Affecter</button>
+                                        <button mat-button color="basic" data-dismiss="modal">Annuler</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="premier">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Veillez sélectionner le service de destination</h2>
+                        <button type="button" class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <form [formGroup]="form2" class="example-form">
+                                    <div class="col-12">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="Pos">Service</label>
+                                            </div>
+                                            <select class="custom-select" id="Ser" formControlName="ser" required>
+                                                <option *ngFor="let service of services" [value]="service.ser_id">
+                                                    {{service.Libelle_s}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button mat-button color="accent" (click)="affecter()">Suivant</button>
+                                        <button mat-button color="basic" data-dismiss="modal">Annuler</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="edit">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Modification de l'employer</h2>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <form [formGroup]="form1" class="example-form">
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Nom" id="Nom" formControlName="nom" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Prenom" id="Prenom" formControlName="prenom" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Sexe" id="Sexe" formControlName="sexe" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="N° Sécurité soc" id="Nss" formControlName="nss" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Date de naissance" id="Dn" formControlName="dn" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Statut" id="Statut" formControlName="statut" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Adresse" id="Adresse" formControlName="adresse" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Ancienneté" id="Anciennete" formControlName="anciennete" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width ">
+                                            <input matInput placeholder="Email" id="email" formControlName="emailFormControl" required>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Téléphone" type="number" id="Telephone" formControlName="telephone" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div>
+                                        <button mat-button color="accent" (click)="modEmployer()">Enrégistrer</button>
+                                        <button mat-button color="basic" data-dismiss="modal">Annuler</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

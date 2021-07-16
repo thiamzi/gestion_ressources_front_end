@@ -1,0 +1,52 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header card-header-danger">
+                    <h3 class="card-title">Historique des notificaitons notifications</h3>
+                    <!-- <p class="card-category">Handcrafted by our friend
+                  <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the
+                  <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a>
+              </p> -->
+                </div>
+                <div class="card-body">
+                    <div class="row" style="height: 450px; overflow-y: auto;">
+                        <div class="col-12">
+                            <!-- <div class="alert alert-info">
+                                <span>This is a plain notification</span>
+                            </div>
+                            <div class="alert alert-info">
+                                <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <i class="material-icons">close</i>
+                          </button>
+                                <span>This is a notification with close button.</span>
+                            </div>
+                            <div class="alert alert-info alert-with-icon" data-notify="container">
+                                <i class="material-icons" data-notify="icon">add_alert</i>
+                                <button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <i class="material-icons">close</i>
+                          </button>
+                                <span data-notify="message">This is a notification with close button and icon.</span>
+                            </div> -->
+                            <div *ngFor="let notif of notifications let i=index">
+                                <div *ngIf="inf(i)" class="alert alert-dark alert-with-icon" data-notify="container">
+                                    <i class="material-icons" data-notify="icon">notifications</i>
+                                    <p>
+                                        <span data-notify="message"> {{notif.dateCreation | date: 'dd/MM/yyyy'}} à {{notif.dateCreation | date: 'hh'}}h {{notif.dateCreation | date: 'mm'}}mn</span>
+                                        <span data-notify="message"> {{notif.sender}}  {{notif.contenu}}</span>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <div>
+                            <button mat-button id="idd" (click)="plus()" color="primary">voire tout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="container-fluid">
+            <h3 style="border: 4px solid rgb(231, 15, 15); text-align: center">
+              BON DE COMMANDE
+            </h3>
+            <h5>{{ hop.NomH }}</h5>
+            <br />
+            <p>Bon de commande N° {{ commande.numero }}</p>
+            <p>Date de commande : {{ commande.date | date : 'dd/MM/yyyy' }}</p>
+            <table style="border : 2px solid black;" class="container-fluid">
+              <thead style="background: rgb(231, 15, 15); color: white">
+                <tr>
+                  <th style="border-left: 1px solid black;">Référence</th>
+                  <th style="border-left: 1px solid black;">Description</th>
+                  <th style="border-left: 1px solid black;">Quantité</th>
+                  <th style="border-left: 1px solid black;">Prix unitaire</th>
+                  <th style="border-left: 1px solid black;">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  style="border-bottom: 1px solid black;"
+                  *ngFor="let mat of mat_coms"
+                >
+                  <td style="border-left: 1px solid black;">
+                    {{ mat.reference }}
+                  </td>
+                  <td style="border-left: 1px solid black;">
+                    {{ mat.description }}
+                  </td>
+                  <td style="border-left: 1px solid black;">
+                    {{ mat.Quantite }}
+                  </td>
+                  <td style="border-left: 1px solid black;">
+                    {{ mat.Prix_unitair }}
+                  </td>
+                  <td style="border-left: 1px solid black;">
+                    {{ mat.Quantite * mat.Prix_unitair }}
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td colspan="2">Montant total</td>
+                  <td style="border-left: 1px solid black;">{{ total }}</td>
+                </tr>
+              </tfoot>
+            </table>
+            <button
+            mat-raised-button
+            mat-min-fab
+            class="btn btn-danger"
+            (click)="enregistrer()"
+            style="margin-top:opx;"
+          >
+            Enregistrer
+          </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

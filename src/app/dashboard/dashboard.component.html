@@ -1,0 +1,205 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+            <h5>Les services</h5>
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <div class="d-inline-block">
+              <h4 class="card-title ">Liste des services</h4>
+              <p class="card-category"></p>
+            </div>
+
+            <div
+              class="d-inline-block pull-right"
+              style="margin-right: 10%;"
+            >
+              <button
+              *ngIf="verif"
+                mat-raised-button
+                mat-min-fab
+                data-target="#edit"
+                (click)="modService()"
+                data-toggle="modal"
+                class="btn btn-danger btn-just-icon btn-round"
+              >
+                <i class="material-icons">add</i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    N°
+                  </th>
+                  <th>
+                    Libelle
+                  </th>
+                  <th class="text-center">
+                    Etat
+                  </th>
+                  <th class="text-right">
+                    Actions
+                  </th>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let service of services; let i = index"
+                    class="ligne"
+                    [matTooltip]="service.Description_s"
+                    [matTooltipPosition]="'above'"
+                  >
+                    <th>{{ i + 1 }}</th>
+                    <td>{{ service.Libelle_s }}</td>
+
+                    <td *ngIf="service.Active" class="text-center">Activé</td>
+                    <td *ngIf="!service.Active" class="text-center">
+                      Déactivé
+                    </td>
+                    <td class="td-actions text-right">
+                      <button 
+                        type="button"
+                        rel="tooltip"
+                        class="btn btn-info btn-link"
+                        [routerLink]="['../Services', service.ser_id]"
+                      >
+                        <i class="material-icons">visibility</i>
+                      </button>
+                      <button *ngIf="verif"
+                        type="button"
+                        rel="tooltip"
+                        (click)="modService(service)"
+                        class="btn btn-success btn-link"
+                      >
+                        <i class="material-icons">edit</i>
+                      </button>
+                      <button *ngIf="verif"
+                        type="button"
+                        rel="tooltip"
+                        (click)="DesactiverService(service.ser_id)"
+                        class="btn btn-danger btn-link"
+                      >
+                        <i class="material-icons">close</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="edit">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Ajouter service</h2>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <form [formGroup]="form1" class="example-form">
+              <div class="col-12" class="form-group">
+                <mat-form-field class="example-full-width">
+                  <input
+                    matInput
+                    placeholder="Libelle"
+                    id="Libelle"
+                    formControlName="libelle"
+                    required
+                  />
+                </mat-form-field>
+              </div>
+
+              <div class="col-12" class="form-group">
+                <mat-form-field class="example-full-width">
+                  <textarea
+                    matInput
+                    id="Adresse_email"
+                    placeholder="Description"
+                    formControlName="description"
+                    required
+                  ></textarea>
+                </mat-form-field>
+              </div>
+              <div>
+                <button mat-button color="accent" id="ee" (click)="ajouter()">
+                  Suivant
+                </button>
+                <button mat-button color="basic" data-dismiss="modal">
+                  Annuler
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="chef">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Ajouter chef de service</h2>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <form [formGroup]="form2" class="example-form">
+              <div class="col-12" class="form-group">
+                <mat-form-field class="example-full-width">
+                  <input
+                    matInput
+                    placeholder="Nom d'utilisateur"
+                    id="nom_utilisateur"
+                    formControlName="nom_utilisateur"
+                    required
+                  />
+                  <span id="utilisateur"></span>
+                </mat-form-field>
+              </div>
+
+              <div class="col-12" class="form-group">
+                <mat-form-field class="example-full-width">
+                  <input
+                    matInput
+                    placeholder="Email"
+                    id="adresse_mail"
+                    formControlName="adresse_mail"
+                    required
+                  />
+                  <span id=" email"></span>
+                </mat-form-field>
+              </div>
+              <div>
+                <button
+                  mat-button
+                  color="accent"
+                  type="submit"
+                  (click)="ajouterchef()"
+                >
+                  Enrégistrer
+                </button>
+                <button mat-button color="basic" data-dismiss="modal">
+                  Annuler
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,320 @@
+<div class="main-content" id="creer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <button class=" btn btn-success" (click)="enregistrer0()" style="margin-right: 20px;">Enregistrer</button>
+                <button class="btn btn-outline-dark" (click)="regler0()">Actualiser</button>
+                <div class="col-lg-12" id="" style="margin-left: 40%; background: white;">
+                    <form [formGroup]="form1" class="example-form" style="width: 100%;">
+                        <div class="d-flex justify-content-center">
+                            <div style=" display: inline-block ;margin-right: 260px;">
+                                <div style="border: 1px solid black; margin-top: 20px;">
+                                    <p>MBoro quartier Lasserre</p>
+                                    <p>SIRET : 16843242564554</p>
+                                </div><br>
+
+                                <span>Matricule : 0236</span><br>
+                                <span>N° Sercurite sociale : {{employer.Nss}} </span><br>
+                                <span>Statut : {{employer.Statut}}</span><br>
+                                <span>Ancienneté : {{employer.Anciennete | date: 'dd/MM/yyyy'}}</span><br><br>
+
+                            </div>
+
+                            <div style="display: inline-block;">
+                                <h3 style="border : 2px solid black; font-weight: bold;">BULLETIN DE PAIE</h3><br>
+                                <span><input formControlName="a0" required style="font-size: 13px;height: 15px; width: 200px; " type="text " placeholder="Periode "></span><br>
+                                <span>Paiement, le {{ date | date: 'dd/MM/yyyy'}} par virement</span><br><br>
+                                <div>
+                                    <span>Prenom:  {{ employer.Prenom }} </span><br>
+                                    <span>Nom:  {{ employer.Nom }} </span><br>
+                                    <span>Adresse: {{employer.Adresse}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+
+
+
+                            <table style="border : 2px solid ">
+
+                                <thead style="background: rgb(231, 15, 15) ">
+                                    <tr style="border-bottom: 1px solid black; ">
+                                        <th style="border-left: 1px solid black; color: white; " class="coti">Cotisation et contributions sociale</th>
+                                        <th style="border-left: 1px solid black; color: white; ">Base</th>
+                                        <th style="border-left: 1px solid black; color: white; ">Taux salarial</th>
+                                        <th style="border-left: 1px solid black; color: white; ">Part salarié</th>
+                                        <th style="border-left: 1px solid black; color: white; ">Part employeur</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="font-weight: bold; font-size: 12px; border-collapse: collapse; ">
+                                            SANTE
+                                        </td>
+                                        <td style="border-left: 1px solid black; "></td>
+                                        <td style="border-left: 1px solid black; "></td>
+                                        <td style="border-left: 1px solid black; "></td>
+                                        <td style="border-left: 1px solid black; "></td>
+                                        <tr>
+                                            <td style="font-size: 13px; " class="coti"> Sécurité Sociale-Maladie Maternité Invalidité Décès</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a1" required style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a2" style="font-size: 13px;height: 15px; width: 100px; " type="number " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a3" style="font-size: 13px;height: 15px; width: 100px; " type="number " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a4" style="font-size: 13px;height: 15px; width: 100px; " type="number " placeholder="valeur "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 13px; " class="coti">Complémentaire Incapcité Invalidité Décès</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a5" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a6" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a7" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a8" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 13px; " class="coti">Complémentaire Santé</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a9" style="font-size: 13px;height: 15px; width: 100px; " type="number " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a10" style="font-size: 13px;height: 15px; width: 100px; " type="number " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a11" style="font-size: 13px;height: 15px; width: 100px; " type="number " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a12" style="font-size: 13px;height: 15px; width: 100px; " type="number " placeholder="valeur "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold; font-size: 12px; " class="coti">ACCIDENTS DU TRAVAIL-MALADIES PROFESSIONELLES</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a13" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a14" class="cache" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a15" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a16" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold; font-size: 12px; " class="coti">RETRAITE</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a17" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a18" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a19" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a20" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 13px; " class="coti">Sécurité Sociale plafonné</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a21" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a22" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a23" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a24" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 13px; " class="coti">Sécurité Sociale déplafonné</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a25" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a26" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a27" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a28" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 13px; " class="coti">Complementaire Tranche A</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a29" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a30" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a31" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a32" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 13px; " class="coti">Complémentaire Garantie Minimalede Points</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a33" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a34" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a35" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a36" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 13px; " class="coti">Complementaire Tranche B</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a37" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a38" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a39" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a40" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 13px; " class="coti">Complementaire Tranche C</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a41" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a42" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a43" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a44" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 13px; " class="coti">Suplémentaire</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a45" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a46" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a47" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a48" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold; font-size: 12px; " class="coti">FAMILLE-SECURITE SOCIALE</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a49" class="cache" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a50" class="cache" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a51" class="cache" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a52" class="cache" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold; font-size: 12px; " class="coti">ASSURANCE CHOMAGE</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a53" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a54" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a55" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a56" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 13px;" class="coti">chomage</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a57" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a58" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a59" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a60" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 13px; " class="coti">APEC</td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a61" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a62" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a63" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            <td style="border-left: 1px solid black; "><input formControlName="a64" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                        </tr>
+                                        <tr>
+                                            <tr>
+                                                <td style="font-weight: bold; font-size: 12px; " class="coti">CoTISATIONS STATUAIRESo</td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a65" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a66" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a67" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a68" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; font-size: 12px; " class="coti">AUTRES CONTRIBUTIONS DUES PAR L'EMPLOYEUR</td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a69" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a70" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a71" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a72" class="cache" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; font-size: 12px; " class="coti">CSG non Imposable à l'impot sur le revenu</td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a73" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a74" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a75" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a76" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; font-size: 12px; " class="coti">CSGCRDS Imposable à l'impot sur le revnu</td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a77" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a78" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a79" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a80" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold; font-size: 12px; " class="coti">ALlEGEMENT DE COTISATIONS</td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a81" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a82" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a83" class="cache" style="font-size: 13px;height: 15px; width: 100px; "></td>
+                                                <td style="border-left: 1px solid black; "><input formControlName="a84" style="font-size: 13px;height: 15px; width: 100px; " type="text " placeholder="valeur "></td>
+                                            </tr>
+                                            <tr style="border :1px solid black; ">
+                                                <td style="background: rgb(231, 15, 15) ; color: white;font-weight: bold; font-size: 11px; " class="coti">TOATL DES COTISATIONS ET CONTRIBUTIONS</td>
+                                                <td style="border-left: 1px solid black; "></td>
+                                                <td style="border-left: 1px solid black; "></td>
+                                                <td style="border-left: 1px solid black; "><span id="a85"></span></td>
+                                                <td style="border-left: 1px solid black; "><span id="a86"></span></td>
+                                            </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr style="border-bottom: 1px solid black ">
+                                        <td></td>
+                                        <td></td>
+                                        <td colspan="2 ">Net à payer en FrCFA</td>
+                                        <td><span id="a87"></span></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-content" id="voire" style="display: none;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <button class="btn btn-success" (click)="imprimer()">Imprimer</button>
+                <div class="col-lg-12" id="bulletin" style="margin-left: 40%; background: white;">
+                    <div class="d-flex justify-content-center">
+                        <div style=" display: inline-block ;margin-right: 260px;">
+                            <div style="border: 1px solid black; margin-top: 20px;">
+                                <p>MBoro quartier Lasserre</p>
+                                <p>SIRET : 16843242564554</p>
+                            </div><br>
+
+                            <span>Matricule : 0236</span><br>
+                            <span>N° Sercurite sociale : {{employer.Nss}} </span><br>
+                            <span>Statut : {{employer.Statut}}</span><br>
+                            <span>Ancienneté : {{employer.Anciennete | date: 'dd/MM/yyyy'}}</span><br><br>
+                        </div>
+
+                        <div style="display: inline-block;">
+                            <h3 style="border : 2px solid black; font-weight: bold;">BULLETIN DE PAIE</h3><br>
+                            <span>{{bulletinV.Periode}}</span><br>
+                            <span>Paiement, le {{bulletinV.Date_c | date: 'dd/MM/yyyy'}} par virement</span><br><br>
+                            <div>
+                                <span>Prenom:  {{ employer.Prenom }} </span><br>
+                                <span>Nom:  {{ employer.Nom }} </span><br>
+                                <span>Adresse: {{employer.Adresse}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+
+
+
+                        <table style="border : 2px solid ">
+
+                            <thead style="background: rgb(231, 15, 15) ">
+                                <tr style="border-bottom: 1px solid black; ">
+                                    <th style="border-left: 1px solid black; color: white; " class="coti">Cotisation et contributions sociale</th>
+                                    <th style="border-left: 1px solid black; color: white; width:  100px;">Base</th>
+                                    <th style="border-left: 1px solid black; color: white; width:  100px;">Taux salarial</th>
+                                    <th style="border-left: 1px solid black; color: white; width:  100px;">Part salarié</th>
+                                    <th style="border-left: 1px solid black; color: white; width:  100px;">Part employeur</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="font-weight: bold; font-size: 12px; border-collapse: collapse; ">
+                                        SANTE
+                                    </td>
+                                    <td style="border-left: 1px solid black; "></td>
+                                    <td style="border-left: 1px solid black; "></td>
+                                    <td style="border-left: 1px solid black; "></td>
+                                    <td style="border-left: 1px solid black; "></td>
+                                    <tr *ngFor="let info of bulletinV.Infos">
+                                        <td style="font-size: 13px; " class="coti"> <span> {{ info.CSS }} </span></td>
+                                        <td style="border-left: 1px solid black; "><span>{{ info.Base }}</span></td>
+                                        <td style="border-left: 1px solid black; "><span>{{ info.Taux_salarial }}</span></td>
+                                        <td style="border-left: 1px solid black; "><span>{{ info.part_salarie }}</span></td>
+                                        <td style="border-left: 1px solid black; "><span>{{ info.part_employeur }}</span></td>
+                                    </tr>
+
+                                    <tr style="border :1px solid black; ">
+                                        <td style="background: rgb(231, 15, 15) ; color: white;font-weight: bold; font-size: 11px; " class="coti">TOATL DES COTISATIONS ET CONTRIBUTIONS</td>
+                                        <td style="border-left: 1px solid black; "></td>
+                                        <td style="border-left: 1px solid black; "></td>
+                                        <td style="border-left: 1px solid black; "><span> {{totalPS()}} </span></td>
+                                        <td style="border-left: 1px solid black; "><span> {{totalPE()}} </span></td>
+                                    </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr style="border-bottom: 1px solid black ">
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2">Net à payer en FrCFA</td>
+                                    <td><span id="a87"> {{total()}} </span></td>
+                                </tr>
+
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-end" style="height: 230px;padding: 30px;">
+                        <span style="margin-top: 30px; text-decoration: underline;">Le Directeur</span>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

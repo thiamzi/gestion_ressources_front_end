@@ -1,0 +1,187 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h5>{{ Commande }}</h5>
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <div class="d-inline-block">
+              <h4 class="card-title ">
+                Liste des materiels à commander classée par service
+              </h4>
+              <p class="card-category"></p>
+            </div>
+            <div
+              class="d-inline-block pull-right"
+              style="margin-right: 10%;"
+            ></div>
+          </div>
+
+          <div class="card-body">
+            <mat-accordion>
+              <mat-expansion-panel
+                *ngFor="let service of Services_mat; let i = index"
+                (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false"
+              >
+                <mat-expansion-panel-header
+                  (click)="recup_mat_c(service.ser_id, i)"
+                >
+                  <mat-panel-title>
+                    {{ service.Libelle_s }}
+                  </mat-panel-title>
+                  <mat-panel-description> </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        N°
+                      </th>
+                      <th>
+                        Référence
+                      </th>
+                      <th>
+                        Quantité
+                      </th>
+                      <th>
+                        Prix unitaire
+                      </th>
+                      <th *ngIf="verif1" class="text-right">
+                        Action
+                      </th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let mat of mat_comsV; let i = index">
+                        <th>
+                          {{ i + 1 }}
+                        </th>
+                        <td>
+                          {{ mat.reference }}
+                        </td>
+                        <td>
+                          {{ mat.Quantite }}
+                        </td>
+                        <td class="text-primary">
+                          {{ mat.Prix_unitair }}
+                        </td>
+                        <td class="td-actions text-right">
+                          <button
+                            *ngIf="verif1"
+                            type="button"
+                            rel="tooltip"
+                            class="btn btn-danger btn-link"
+                            (click)="suppmacom(mat.mat_comm_id, i)"
+                          >
+                            <i class="material-icons">delete</i>
+                          </button>
+                          <button
+                            type="button"
+                            rel="tooltip"
+                            class="btn btn-success btn-link"
+                            (click)="ajouter(mat.mat_comm_id)"
+                            *ngIf="verif"
+                          >
+                            <i class="material-icons">add</i>
+                          </button>
+                          <button
+                            type="button"
+                            rel="tooltip"
+                            class="btn btn-success btn-link"
+                            (click)="ajouter(mat.mat_comm_id)"
+                            *ngIf="verif"
+                          >
+                            <i class="material-icons"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <div *ngIf="verif1">
+              <button
+                mat-raised-button
+                mat-min-fab
+                class="btn btn-danger"
+                (click)="Creerbon()"
+                style="margin-top:opx;"
+                *ngIf="!verif"
+              >
+                Creer bon
+              </button>
+              <button
+                mat-raised-button
+                mat-min-fab
+                class="btn btn-primary"
+                *ngIf="verif"
+                [routerLink]="['bon', id]"
+              >
+                Voir bon
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <div class="d-inline-block">
+              <h4 class="card-title ">Historique des commandes</h4>
+              <p class="card-category"></p>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    N°
+                  </th>
+                  <th>
+                    Date
+                  </th>
+                  <th class="text-right">
+                    Action
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let com of Comandes">
+                    <th>
+                      {{ com.numero }}
+                    </th>
+                    <td>
+                      {{ com.date | date: "dd/MM/yyyy" }}
+                    </td>
+                    <td class="td-actions text-right">
+                      <button
+                        type="button"
+                        rel="tooltip"
+                        class="btn btn-info btn-link"
+                      >
+                        <i
+                          class="material-icons"
+                          [routerLink]="['historique', com.comm_id]"
+                          >visibility</i
+                        >
+                      </button>
+                      <button *ngIf="verif1"
+                        type="button"
+                        rel="tooltip"
+                        class="btn btn-danger btn-link"
+                      >
+                        <i class="material-icons">close</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

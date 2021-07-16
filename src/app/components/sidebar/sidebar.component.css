@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Pacifico|Righteous|Roboto+Condensed|Ubuntu&display=swap');
+#log {
+    font-family: 'Pacifico';
+    font-size: 36px;
+    color: lightcoral !important;
+}

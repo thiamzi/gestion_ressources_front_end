@@ -1,0 +1,205 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4  ml-auto mr-auto">
+        <div *ngIf="verifffff"  class="card card-profile">
+          <div
+            id="image"
+            class="card-avatar"
+            data-target="#edit"
+            data-toggle="modal"
+          >
+            <a>
+              <img class="img" src="./assets/img/faces/profil.jpg" />
+            </a>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive ">
+              <table class="table table-borderless">
+                <thead></thead>
+                <tbody>
+                  <tr>
+                    <td class="text-left">Nom d'utilisateur</td>
+                    <td class="text-left">{{ user.nom_utilisateur }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">Email</td>
+                    <td class="text-left">{{ user.adresse_mail }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="card-description">
+              votre nuveau d'habilitaiton indique que vous pouvez consulter les
+              informations relatives à votre service mais vous ne pouvez pas y
+              apporter aucune modification , vous pouvez aussi signaler un
+              manquement, que ce soit matériel ou de personnel,ou un problème en
+              laissant un méssage pour les services humaine ou materiel.
+            </p>
+          </div>
+        </div>
+        <div *ngIf="!verifffff" class="card card-profile">
+          <div
+            id="image"
+            class="card-avatar"
+            data-target="#editc"
+            data-toggle="modal"
+          >
+            <a>
+              <img class="img" src="./assets/img/faces/profil.jpg" />
+            </a>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive ">
+              <table class="table table-borderless">
+                <thead></thead>
+                <tbody>
+                  <tr>
+                    <td class="text-left">Nom d'utilisateur</td>
+                    <td class="text-left">{{ userc.nom_utilisateur }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left">Email</td>
+                    <td class="text-left">{{ userc.adresse_mail }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="card-description">
+              votre nuveau d'habilitaiton indique que vous pouvez consulter les
+              informations relatives à votre service mais vous ne pouvez pas y
+              apporter aucune modification , vous pouvez aussi signaler un
+              manquement, que ce soit matériel ou de personnel,ou un problème en
+              laissant un méssage pour les services humaine ou materiel.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+    <div class="modal" id="editc">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Modification duu compte</h2>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <form [formGroup]="form2" class="example-form">
+                                    <div class="col-12" class="form-group">
+                                        <input class="form-control" placeholder="Nom d'utilisateur" id="Nom_utilisateur" formControlName="nom_utilisateur" [value]="userc.nom_utilisateur" required>
+                                        <span id="err_Nom_utilisateur"></span>
+                                    </div>
+
+                                    <div class="col-12" class="form-group">
+
+                                        <input class="form-control" id="Adresse_email" placeholder="Adresse Email" formControlName="adresse_mail" [value]="userc.adresse_mail" required>
+
+                                        <span id="err_Adresse_email"></span>
+                                    </div>
+                                    <div class="col-12" class="form-group">
+
+                                        <input class="form-control" placeholder="Nouveau Mot de Passe" formControlName="Mot_de_passe" appPassword type="password" id="nouv_Mot_de_passe" required>
+
+                                        <span id="err_nouv_Mot_de_passe"></span>
+                                    </div>
+                                    <div class="col-12" class="form-group">
+
+                                        <input class="form-control" placeholder="Confirmer mot de Passe" appPassword type="password" id="Conf_Mot_de_passe" required>
+
+                                        <span id="err_conf_Mot_de_passe"></span>
+                                    </div>
+                                    <div>
+                                        <button mat-button color="accent" (click)="modifierchef()">Enrégistrer</button>
+                                        <button mat-button color="basic" data-dismiss="modal">Annuler</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="modal" id="edit">
+      <div class="modal-dialog ">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Modification du compte</h2>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+              <div class="row">
+                <form [formGroup]="form1" class="example-form">
+                  <div class="col-12" class="form-group">
+                    <input
+                      class="form-control"
+                      placeholder="Nom d'utilisateur"
+                      id="Nom_utilisateur"
+                      formControlName="nom_utilisateur"
+                      [value]="user.nom_utilisateur"
+                      required
+                    />
+                    <span id="err_Nom_utilisateur"></span>
+                  </div>
+
+                  <div class="col-12" class="form-group">
+                    <input
+                      class="form-control"
+                      id="Adresse_email"
+                      placeholder="Adresse Email"
+                      formControlName="adresse_mail"
+                      [value]="user.adresse_mail"
+                      required
+                    />
+
+                    <span id="err_Adresse_email"></span>
+                  </div>
+                  <div class="col-12" class="form-group">
+                    <input
+                      class="form-control"
+                      placeholder="Nouveau Mot de Passe"
+                      formControlName="Mot_de_passe"
+                      appPassword
+                      type="password"
+                      id="nouv_Mot_de_passe"
+                      required
+                    />
+
+                    <span id="err_nouv_Mot_de_passe"></span>
+                  </div>
+                  <div class="col-12" class="form-group">
+                    <input
+                      class="form-control"
+                      placeholder="Confirmer mot de Passe"
+                      appPassword
+                      type="password"
+                      id="Conf_Mot_de_passe"
+                      required
+                    />
+
+                    <span id="err_conf_Mot_de_passe"></span>
+                  </div>
+                  <div>
+                    <button mat-button color="accent" (click)="modifier()">
+                      Enrégistrer
+                    </button>
+                    <button mat-button color="basic" data-dismiss="modal">
+                      Annuler
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+

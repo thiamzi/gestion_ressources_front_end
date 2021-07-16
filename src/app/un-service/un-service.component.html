@@ -1,0 +1,361 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            {{ servi.Libelle_s }}
+            <div class="col-md-12" *ngIf="verif">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <div class="d-inline-block">
+                            <h4 class="card-title ">Liste des postes</h4>
+                            <p class="card-category"></p>
+                        </div>
+
+                        <div class="d-inline-block pull-right" style="margin-right: 10%;">
+                            <button *ngIf="verif1" mat-raised-button mat-min-fab data-target="#addp" (click)="remplirForm2()" data-toggle="modal" class="btn btn-danger btn-just-icon btn-round">
+                <i class="material-icons">add</i>
+              </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        N°
+                                    </th>
+                                    <th>
+                                        Libelle
+                                    </th>
+                                    <th class="text-center">
+                                        Etat
+                                    </th>
+                                    <th class="text-center"></th>
+                                    <th *ngIf="verif2" class="text-right">
+                                        Actions
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let poste of postes; let i = index" class="ligne" [matTooltip]="poste.Description_p" [matTooltipPosition]="'above'">
+                                        <th>{{ i + 1 }}</th>
+                                        <td>{{ poste.Libelle_p }}</td>
+                                        <td *ngIf="poste.Active" class="text-center">Activé</td>
+                                        <td *ngIf="!poste.Active" class="text-center">Déactivé</td>
+                                        <td class="text-center">
+                                            <span class="dropup">
+                        <button
+                          class="dropdown-toggle btn btn-primary btn-round"
+                          data-toggle="dropdown"
+                        >
+                          Employers<b class="caret"></b>
+                        </button>
+                        <ul
+                          class="dropdown-menu dropdown-primary dropdown-menu-right"
+                        >
+                          <li class="dropdown-header">noms des employers</li>
+                          <li
+                            *ngFor="let employer of poste.Employers"
+                            [routerLink]="['./employer', employer._id]"
+                          >
+                            <a> {{ employer.Prenom + " " + employer.Nom }}</a>
+                          </li>
+                          <li>
+                            <button *ngIf="verif1"
+                              mat-raised-button
+                              mat-min-fab
+                              data-target="#add"
+                              (click)="posteAinf(poste.pos_id)"
+                              data-toggle="modal"
+                              style="margin-right:8px;"
+                              class="btn btn-primary btn-just-icon btn-round pull-right"
+                            >
+                              <i class="material-icons">add</i>
+                            </button>
+                          </li>
+                        </ul>
+                      </span>
+                                        </td>
+                                        <td class="td-actions text-right">
+                                            <button *ngIf="verif1" type="button" rel="tooltip" (click)="remplirForm2(poste)" class="btn btn-success btn-link">
+                        <i class="material-icons">edit</i>
+                      </button>
+                                            <button *ngIf="verif1" type="button" rel="tooltip" (click)="DesactiverPoste(poste.pos_id)" class="btn btn-danger btn-link">
+                        <i class="material-icons">close</i>
+                      </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" *ngIf="veriff">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <div class="d-inline-block">
+                            <h4 class="card-title ">Liste des materiels</h4>
+                            <p class="card-category"></p>
+                        </div>
+
+                        <div class="d-inline-block pull-right" style="margin-right: 10%;">
+                            <button *ngIf="verifadm" mat-raised-button mat-min-fab data-target="#addm" (click)="remplirForm3()" data-toggle="modal" class="btn btn-danger btn-just-icon btn-round">
+                <i class="material-icons">add</i>
+              </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        N°
+                                    </th>
+                                    <th>
+                                        Libelle
+                                    </th>
+                                    <th class="text-center">
+                                        Prix
+                                    </th>
+                                    <th class="text-center">
+                                        Stock
+                                    </th>
+                                    <th class="text-center">
+                                        A commander
+                                    </th>
+                                    <th *ngIf="verif2 || vverifadm" class="text-right">
+                                        Actions
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let materiel of materiels; let i = index" class="ligne" [matTooltip]="materiel.Description_m" [matTooltipPosition]="'above'">
+                                        <th>{{ i + 1 }}</th>
+                                        <td>{{ materiel.Libelle_m }}</td>
+                                        <td class="text-center">{{ materiel.Prix }}</td>
+                                        <td class="text-center">{{ materiel.stock }}</td>
+                                        <td class="text-center">{{ materiel.aCommande }}</td>
+                                        <td class="td-actions text-right">
+                                            <button *ngIf="verifadm" type="button" rel="tooltip" (click)="remplirForm3(materiel)" class="btn btn-success btn-link">
+                        <i class="material-icons">edit</i>
+                      </button>
+                                            <button *ngIf="verifadm" type="button" rel="tooltip" (click)="supMateriel(materiel.mat_id)" class="btn btn-danger btn-link">
+                        <i class="material-icons">close</i>
+                      </button>
+                                            <button *ngIf="verif2" type="button" data-target="#addmat_comm" rel="tooltip" data-toggle="modal" (click)="donnerid(materiel.mat_id)" class="btn btn-success btn-link">
+                        <i class="material-icons">add</i>
+                      </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="add">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Ajouter un employer</h2>
+                        <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <form [formGroup]="form1" class="example-form">
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Nom" id="Nom" formControlName="nom" required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Prenom" id="Prenom" formControlName="prenom" required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Sexe" id="Sexe" formControlName="sexe" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="N° Sécurité soc" id="Nss" formControlName="nss" required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Date de naissance" id="Dn" formControlName="dn" required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Statut" id="Statut" formControlName="statut" required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Adresse" id="Adresse" formControlName="adresse" required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Ancienneté" id="Anciennete" formControlName="anciennete" required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width ">
+                                            <input matInput placeholder="Email" id="email" formControlName="emailFormControl" required />
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Téléphone" type="number" id="Telephone" formControlName="telephone" required />
+                                        </mat-form-field>
+                                    </div>
+                                    <div>
+                                        <button mat-button color="accent" (click)="addEmployer()">
+                      Enrégistrer
+                    </button>
+                                        <button mat-button color="basic" data-dismiss="modal">
+                      Annuler
+                    </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="addp">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Ajouter un poste</h2>
+                <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <form [formGroup]="form2" class="example-form">
+                            <div class="col-12" class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Libelle" id="Libelle" formControlName="libelle_p" required />
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-12" class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <textarea matInput id="Description_p" placeholder="Description" formControlName="description_p" required></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <button mat-button color="accent" (click)="addPoste()">
+                  Enrégistrer
+                </button>
+                                <button mat-button color="basic" data-dismiss="modal">
+                  Annuler
+                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="addm">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Ajouter un materiel</h2>
+                <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <form [formGroup]="form3" class="example-form">
+                            <div class="col-12" class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Libelle" id="Libelle_m" formControlName="libelle_m" required />
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-12" class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <textarea matInput id="Description_m" placeholder="Description_m" formControlName="description_m" required></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12" class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput type="number" placeholder="Prix" id="prix" formControlName="Prix" />
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12" class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput type="number" placeholder="Stock" id="stock" formControlName="stock" />
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <button mat-button color="accent" (click)="addMateriel()">
+                  Enrégistrer
+                </button>
+                                <button mat-button color="basic" data-dismiss="modal">
+                  Annuler
+                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="addmat_comm">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Ajouter a la commande</h2>
+                <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <form [formGroup]="form4" class="example-form">
+                            <div class="col-12" class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <textarea matInput type="text" placeholder="Description" id="description" formControlName="description"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12" class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput type="number" placeholder="Quantite" id="quantite" formControlName="quantite" />
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <button mat-button color="accent" (click)="addMateriel_a_comm()">
+                  Enrégistrer
+                </button>
+                                <button mat-button color="basic" data-dismiss="modal">
+                  Annuler
+                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

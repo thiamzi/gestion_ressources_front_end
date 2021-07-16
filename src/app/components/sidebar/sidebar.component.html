@@ -1,0 +1,52 @@
+<div class="logo">
+    <a href="" id="log" style="margin-left:25px ;">
+    Ges:)<span style="color:#00E8E8">tion</span>
+  </a>
+</div>
+<div class="sidebar-wrapper">
+    <div *ngIf="isMobileMenu()"></div>
+    <ul class="nav">
+        <li *ngIf="!veriftab" routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['Services']">
+                <i class="material-icons">dashboard</i>
+                <p>Services</p>
+            </a>
+        </li>
+        <li *ngIf="veriftab" routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['Services' , userc.Service]">
+                <i class="material-icons">dashboard</i>
+                <p>Mon service</p>
+            </a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['Profile']">
+                <i class="material-icons">person</i>
+                <p>Profile</p>
+            </a>
+        </li>
+        <li *ngIf="verif" routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['Commandes']">
+                <i class="material-icons">content_paste</i>
+                <p>Commandes</p>
+            </a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['Notifications']">
+                <i class="material-icons">notifications</i>
+                <p>Notifications</p>
+            </a>
+        </li>
+        <li *ngIf="verif1" routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['Hopital']">
+                <i class="material-icons">sd_card</i>
+                <p>Hopital</p>
+            </a>
+        </li>
+        <li routerLinkActive="active" class="active-pro nav-item">
+            <a class="nav-link" (click)="deconnection()">
+                <i class="material-icons">power_settings_new</i>
+                <p>Deconnexion</p>
+            </a>
+        </li>
+    </ul>
+</div>

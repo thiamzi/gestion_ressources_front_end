@@ -1,0 +1,55 @@
+<div class=" container-fluid bg-dark" style="padding-top: 200px;height: initial;">
+    <div>
+        <div class="d-flex justify-content-center" style="font-size: 200px;">
+            <div class="logo d-flex justify-content-center">
+                <a href="" id="log">
+            Ges:)<span style="color:#00E8E8">tion</span>
+          </a>
+            </div>
+        </div>
+        <div class="d-flex  justify-content-center" style="color:#fff;">
+            <form class="form-signin" (ngSubmit)="Seconnecter()">
+                <h1 class="h3 mb-3 font-weight-normal d-flex  justify-content-center">Se connecter</h1>
+
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" [(ngModel)]="UserCon.adresse_mail" name="adresse_mail" class="form-control bg-white" placeholder="Email address" required autofocus>
+                <span id="error"></span>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" [(ngModel)]="UserCon.Mot_de_passe" name="Mot_de_passe" class="form-control bg-white" placeholder="Password" required>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+                <div class="d-flex justify-content-center">
+                    <a href="" style="color: white;margin-top:8px;"> mot de passe oublié</a>
+                </div>
+                <div class="d-flex justify-content-center" style=" height: 150px;">
+                    <p *ngIf="erreur" style="color: red">{{err}} </p>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="d-flex  justify-content-center" style="color:#fff;">
+        <form class="form-signin " (ngSubmit)="Seconnecterchef()">
+            <h1 class="h3 mb-3 font-weight-normal d-flex  justify-content-center " style="text-align: center;">Se connecter en tant que chef de service</h1>
+
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" [(ngModel)]="UserChef.adresse_mail" name="adresse_mail" class="form-control bg-white" placeholder="Email address" required autofocus>
+            <span id="error"></span>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" [(ngModel)]="UserChef.Mot_de_passe" name="Mot_de_passe" class="form-control bg-white" placeholder="Password" required>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+            <div class="d-flex justify-content-center">
+                <a href="" style="color: white;margin-top:8px;"> mot de passe oublié</a>
+            </div>
+            <div class="d-flex justify-content-center" style=" height: 250px;">
+                <p *ngIf="erreur1" style="color: red">{{err1}} </p>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
